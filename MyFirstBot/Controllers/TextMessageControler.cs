@@ -29,7 +29,8 @@ namespace MyFirstBot.Controllers
                     bottons.Add(new[]
                     {
                         InlineKeyboardButton.WithCallbackData($"Длина текста", CallbackDatas.TextLenght),
-                        InlineKeyboardButton.WithCallbackData($"Сложение чисел", CallbackDatas.Adder)
+                        InlineKeyboardButton.WithCallbackData($"Сложение чисел", CallbackDatas.Adder),
+                        InlineKeyboardButton.WithCallbackData($"В разработке", CallbackDatas.InWork)
                     });
                     await _telegramBotClient.SendTextMessageAsync(message.Chat.Id,
                         $"<b>Бот обрабатывает текстовые сообщения.</b>{Environment.NewLine}" +

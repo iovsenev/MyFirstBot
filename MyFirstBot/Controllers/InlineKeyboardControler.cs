@@ -12,7 +12,7 @@ namespace MyFirstBot.Controllers
         readonly ITelegramBotClient _botClient;
         readonly IStorage _memory;
 
-        public InlineKeyboardControler(ITelegramBotClient botClient, 
+        public InlineKeyboardControler(ITelegramBotClient botClient,
             IStorage memory)
         {
             _botClient = botClient;
@@ -24,13 +24,14 @@ namespace MyFirstBot.Controllers
         {
             if (callbackQuery.Data == null)
                 return;
-            _memory.GetSession(callbackQuery.From.Id).Choise = 
+            _memory.GetSession(callbackQuery.From.Id).Choise =
                 callbackQuery.Data;
 
             string choise = callbackQuery.Data switch
             {
                 CallbackDatas.TextLenght => "Посчитать длину текста",
-                CallbackDatas.Adder => "Сложить числа"
+                CallbackDatas.Adder => "Сложить числа",
+                _ => string.Empty
             };
 
             await _botClient.SendTextMessageAsync(callbackQuery.From.Id,

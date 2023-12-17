@@ -11,19 +11,23 @@ namespace MyFirstBot.models
             Session session,
             CancellationToken token)
         {
-            if (session.Choise == CallbackDatas.TextLenght)
+            switch (session.Choise)
             {
+                case CallbackDatas.TextLenght:
                 await botClient.SendTextMessageAsync(id,
                     "Введите текстовое сообщение длину которого необходимо посчитать.",
                     cancellationToken: token);
-                return;
-            }
-            if (session.Choise == CallbackDatas.Adder)
-            {
+                break;
+                case CallbackDatas.Adder:
                 await botClient.SendTextMessageAsync(id,
                     "Введите числа через пробел которые необходимо сложить.",
                     cancellationToken: token);
-                return;
+                break;
+                default:
+                    await botClient.SendTextMessageAsync(id, 
+                        "В разработке. Пожалуйста выберите другой пункт меню",
+                        cancellationToken: token);
+                    break;
             }
         }
     }
